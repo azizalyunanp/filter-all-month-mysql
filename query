@@ -1,15 +1,22 @@
-SELECT kdbrg,nmbrg,
-    SUM(IF(MONTH(tgl) = '01', qty, 0)) AS 'Jan',
-    SUM(IF(MONTH(tgl) = '02', qty, 0)) AS 'Feb',
-    SUM(IF(MONTH(tgl) = '03', qty, 0)) AS 'Mar',
-    SUM(IF(MONTH(tgl) = '04', qty, 0)) AS 'Apr',
-    SUM(IF(MONTH(tgl) = '05', qty, 0)) AS 'May',
-    SUM(IF(MONTH(tgl) = '06', qty, 0)) AS 'Jun',
-    SUM(IF(MONTH(tgl) = '07', qty, 0)) AS 'Jul',
-    SUM(IF(MONTH(tgl) = '08', qty, 0)) AS 'Aug',
-    SUM(IF(MONTH(tgl) = '09', qty, 0)) AS 'Sep',
-    SUM(IF(MONTH(tgl) = '10', qty, 0)) AS 'Oct',
-    SUM(IF(MONTH(tgl) = '11', qty, 0)) AS 'Nov',
-    SUM(IF(MONTH(tgl) = '12', qty, 0)) AS 'Dec',
+SELECT 
+    kdbrg,
+    nmbrg,
+    SUM(CASE WHEN MONTH(tgl) = '01' THEN qty ELSE 0 END ) AS 'Jan',
+    SUM(CASE WHEN MONTH(tgl) = '02' THEN qty ELSE 0 END ) AS 'Feb',
+    SUM(CASE WHEN MONTH(tgl) = '03' THEN qty ELSE 0 END ) AS 'Mar',
+    SUM(CASE WHEN MONTH(tgl) = '04' THEN qty ELSE 0 END ) AS 'Apr',
+    SUM(CASE WHEN MONTH(tgl) = '05' THEN qty ELSE 0 END ) AS 'May',
+    SUM(CASE WHEN MONTH(tgl) = '06' THEN qty ELSE 0 END ) AS 'Jun',
+    SUM(CASE WHEN MONTH(tgl) = '07' THEN qty ELSE 0 END ) AS 'Jul',
+    SUM(CASE WHEN MONTH(tgl) = '08' THEN qty ELSE 0 END ) AS 'Aug',
+    SUM(CASE WHEN MONTH(tgl) = '09' THEN qty ELSE 0 END ) AS 'Sep',
+    SUM(CASE WHEN MONTH(tgl) = '10' THEN qty ELSE 0 END ) AS 'Oct',
+    SUM(CASE WHEN MONTH(tgl) = '11' THEN qty ELSE 0 END ) AS 'Nov',
+    SUM(CASE WHEN MONTH(tgl) = '12' THEN qty ELSE 0 END ) AS 'Dec',
     SUM(qty) AS TOTAL
-    FROM lhp WHERE YEAR(tgl) = 2017 GROUP BY kdbrg
+FROM 
+    tabel 
+WHERE 
+    YEAR(tgl) = 2017 
+GROUP BY 
+    kdbrg, nmbrg;
